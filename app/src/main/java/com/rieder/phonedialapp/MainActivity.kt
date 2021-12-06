@@ -1,5 +1,7 @@
 package com.rieder.phonedialapp
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    fun call(view: View) {
+        val intent = Intent(
+            Intent.ACTION_DIAL,
+            Uri.parse("tel:$phoneNumber")
+        )
+        startActivity(intent)
+    }
+
     fun addToNumber(view: View) {
         when (view.id) {
             R.id.button_0 -> {
