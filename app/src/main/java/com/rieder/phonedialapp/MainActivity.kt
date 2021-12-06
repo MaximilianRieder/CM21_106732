@@ -2,7 +2,6 @@ package com.rieder.phonedialapp
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -69,19 +68,23 @@ class MainActivity : AppCompatActivity() {
         layout.addView(inputNumber)
         builder.setView(layout)
 
-        builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
-            setNameNumberForQuick(forQuickSave, inputName.text.toString(), inputNumber.text.toString())
-        })
+        builder.setPositiveButton("OK") { _, _ ->
+            setNameNumberForQuick(
+                forQuickSave,
+                inputName.text.toString(),
+                inputNumber.text.toString()
+            )
+        }
         builder.setNegativeButton(
-            "Cancel",
-            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+            "Cancel"
+        ) { dialog, _ -> dialog.cancel() }
 
         builder.show()
     }
 
     //todo do for the other 2
     fun setNameNumberForQuick(forIndex :Int, name :String, number :String) {
-        var sharedPreferences = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
         when(forIndex) {
             1 -> {
                 quickCall1Name = name
