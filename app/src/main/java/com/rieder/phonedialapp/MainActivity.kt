@@ -6,16 +6,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import java.lang.RuntimeException
 
 
 class MainActivity : AppCompatActivity() {
 
     private var phoneNumber = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val quick_button_1 = findViewById<Button>(R.id.quick_button_1)
+        quick_button_1.setOnLongClickListener(object: View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                //Snackbar.make(root_layout, "long click", Snackbar.LENGTH_LONG).show()
+                Log.i("asd", "Long")
+                return true  }
+        })
+        quick_button_1.setOnClickListener {
+            Log.i("asd", "Long2")
+        }
     }
 
     fun call(view: View) {
